@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/texturehaven.com/castle_wall_varriation/castle_wall_varriation.tres" type="Material" id=1]
+[ext_resource path="res://elements/Destructed.gd" type="Script" id=2]
+
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.5, 0.5, 0.4 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.25, 0.25, 0.2 )
+
+[node name="DestructedBlocks" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Block01" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block01"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block01"]
+shape = SubResource( 2 )
+
+[node name="Block02" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block02"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block02"]
+shape = SubResource( 2 )
+
+[node name="Block03" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block03"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block03"]
+shape = SubResource( 2 )
+
+[node name="Block04" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block04"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block04"]
+shape = SubResource( 2 )
+
+[node name="Block05" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block05"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block05"]
+shape = SubResource( 2 )
+
+[node name="Block06" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block06"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block06"]
+shape = SubResource( 2 )
+
+[node name="Block07" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block07"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block07"]
+shape = SubResource( 2 )
+
+[node name="Block08" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Block08"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Block08"]
+shape = SubResource( 2 )

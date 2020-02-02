@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/texturehaven.com/rusty_metal_02/rusty_metal_02.tres" type="Material" id=1]
+[ext_resource path="res://player/Cannon.gd" type="Script" id=2]
+[ext_resource path="res://player/Cannonball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/aim.shader" type="Shader" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.603922, 0.603922, 0.603922, 1 )
+metallic = 0.66
+roughness = 0.69
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 1, 0.1 )
+subdivide_width = 15
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 4 )
+shader_param/velocity = Vector3( 0, 10, -15 )
+shader_param/gravity = 4.9
+shader_param/slices = 20.0
+shader_param/scale = 5.0
+
+[node name="Cannon" type="Spatial"]
+script = ExtResource( 2 )
+cannon_ball = ExtResource( 3 )
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.836382, -0.548147, 0, 0.548147, 0.836382, 0, 0, 0 )
+use_collision = true
+radius = 0.5
+material = ExtResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, -5 )
+radius = 0.5
+height = 10.0
+sides = 12
+cone = true
+material = ExtResource( 1 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, -5 )
+operation = 2
+
+[node name="CSGBox" type="CSGBox" parent="CSGSphere/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05373, 1.71675e-07 )
+height = 9.65268
+material = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGSphere/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.05827, -6.61176e-07 )
+radius = 0.3
+height = 2.0
+sides = 12
+
+[node name="CannonBallSpawnPoint" type="Position3D" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.86423 )
+
+[node name="CannonBalls" type="Node2D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Aim" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02187, -1.55921 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
+[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

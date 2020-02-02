@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/rusty_metal_02_nor_2k.jpg-bbf004c8cd03c849ac34091456aa340c.s3tc.stex"
+path.etc2="res://.import/rusty_metal_02_nor_2k.jpg-bbf004c8cd03c849ac34091456aa340c.etc2.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://assets/texturehaven.com/rusty_metal_02/rusty_metal_02_nor_2k.jpg"
+dest_files=[ "res://.import/rusty_metal_02_nor_2k.jpg-bbf004c8cd03c849ac34091456aa340c.s3tc.stex", "res://.import/rusty_metal_02_nor_2k.jpg-bbf004c8cd03c849ac34091456aa340c.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=1
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
