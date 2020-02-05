@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://elements/Boom.gd" type="Script" id=1]
+[ext_resource path="res://assets/godot/smoke_particle.png" type="Texture" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
@@ -16,6 +17,48 @@ extents = Vector3( 0.55, 0.5, 0.55 )
 
 [sub_resource type="SphereShape" id=5]
 radius = 1.5
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.0666667, 0.103704, 0.259259, 0.466667, 0.992593, 1 )
+colors = PoolColorArray( 0.0351563, 0.241978, 1, 1, 0.184756, 0.184756, 0.184756, 0.427451, 0.93156, 0.137312, 0.0436669, 1, 0.945098, 0.898039, 0.0431373, 0.572549, 0.27451, 0.27451, 0.27451, 0.156863, 0.117647, 0.117647, 0.117647, 0.0174292, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=11]
+min_value = 1.0
+max_value = 15.0
+_data = [ Vector2( 0, 3.04545 ), 0.0, 0.156691, 0, 0, Vector2( 0.981013, 10.3386 ), 17.9545, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3( 0, 1, 0 )
+spread = 104.99
+gravity = Vector3( 0, -2, 0 )
+initial_velocity = 2.0
+angular_velocity = 40.0
+angular_velocity_random = 0.21
+linear_accel = 5.0
+radial_accel_random = 1.0
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=10]
 
 [node name="Boom" type="RigidBody"]
 script = ExtResource( 1 )
@@ -37,4 +80,19 @@ shape = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="EffectRange"]
 shape = SubResource( 5 )
+
+[node name="Particles" type="Particles" parent="."]
+material_override = SubResource( 6 )
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.99
+randomness = 0.36
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 10 )
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

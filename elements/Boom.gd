@@ -7,7 +7,6 @@ var impulse_strength = 10.0
 func _ready():
 	pass # Replace with function body.
 
-
 func _on_Trigger_body_entered(hit_body):
 	if hit_body == self:
 		return
@@ -22,4 +21,11 @@ func _on_Trigger_body_entered(hit_body):
 				var delta = body.global_transform.origin - global_transform.origin
 				body.apply_impulse(body.global_transform.origin, delta.normalized() * impulse_strength)
 		
-		queue_free()
+		# Hide our object and start our particle system
+		$MeshInstance.visible = false
+		$CollisionShape.disabled = true
+		$Particles.emitting = true
+		$Lifetime.start()
+
+func _on_Lifetime_timeout():
+	queue_free()
