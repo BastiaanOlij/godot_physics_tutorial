@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode cull_disabled, unshaded;
 
 uniform vec3 velocity = vec3(0.0, 10.0, -15.0);
-uniform float gravity = 4.9;
+uniform float gravity = 9.8;
 
 uniform float slices = 20.0;
 uniform float scale = 5.0;
@@ -17,7 +17,7 @@ void vertex() {
 	VERTEX += velocity * UV.x;
 	
 	// apply our gravity
-	VERTEX.y -= gravity * UV.x * UV.x;
+	VERTEX.y -= 0.5 * gravity * UV.x * UV.x;
 }
 
 void fragment() {

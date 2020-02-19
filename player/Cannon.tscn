@@ -14,10 +14,10 @@ roughness = 0.69
 size = Vector2( 1, 0.1 )
 subdivide_width = 15
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
 shader_param/velocity = Vector3( 0, 10, -15 )
-shader_param/gravity = 4.9
+shader_param/gravity = 9.8
 shader_param/slices = 20.0
 shader_param/scale = 5.0
 
@@ -65,5 +65,5 @@ one_shot = true
 [node name="Aim" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02187, -1.55921 )
 mesh = SubResource( 2 )
-material/0 = SubResource( 4 )
+material/0 = SubResource( 3 )
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
