@@ -11,13 +11,13 @@ var shoot_strength = 0.2
 func rotate_cannon(mouse_position):
 	var mouse_delta = mouse_position - down_position
 	var direction = Vector3(0.0, mouse_delta.y, mouse_delta.x)
-	$CSGSphere.look_at($CSGSphere.global_transform.origin + direction, Vector3(0.0, 1.0, 0.0))
+	$CSGSphere.look_at($CSGSphere.global_transform.origin + direction, Vector3.UP)
 	$Aim.get_surface_material(0).set_shader_param("velocity", direction * shoot_strength)
 
 # Handle our mouse event
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == 1:
+		if event.button_index == BUTTON_LEFT:
 			if event.pressed and can_shoot:
 				# user pressed the mouse
 				down_position = event.position
