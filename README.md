@@ -2,9 +2,11 @@ Godot 3D physics introduction
 =============================
 These tutorial files are in support of my introduction videos into 3D physics in Godot.
 
+![Screenshot](screenshot.png)
+
 You can find those here:
-- (Part one)[https://youtu.be/SI1bmViq1JA]
-- (Part two)[https://youtu.be/twodQHm0gxw]
+- [Part one](https://youtu.be/SI1bmViq1JA)
+- [Part two](https://youtu.be/twodQHm0gxw)
 
 License
 -------
