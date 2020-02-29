@@ -7,6 +7,7 @@ These tutorial files are in support of my introduction videos into 3D physics in
 You can find those here:
 - [Part one](https://youtu.be/SI1bmViq1JA)
 - [Part two](https://youtu.be/twodQHm0gxw)
+- [Part three](https://youtu.be/z-f5NEt9AXo)
 
 License
 -------
