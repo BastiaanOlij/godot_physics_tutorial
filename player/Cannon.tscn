@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/texturehaven.com/rusty_metal_02/rusty_metal_02.tres" type="Material" id=1]
 [ext_resource path="res://player/Cannon.gd" type="Script" id=2]
 [ext_resource path="res://player/Cannonball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/aim.shader" type="Shader" id=4]
+[ext_resource path="res://player/arch.shader" type="Shader" id=5]
+[ext_resource path="res://assets/fonts/pt_sans_24pt.tres" type="DynamicFont" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.603922, 0.603922, 0.603922, 1 )
@@ -20,6 +22,15 @@ shader_param/velocity = Vector3( 0, 10, -15 )
 shader_param/gravity = 9.8
 shader_param/slices = 20.0
 shader_param/scale = 5.0
+
+[sub_resource type="PlaneMesh" id=5]
+size = Vector2( 0.1, 2 )
+subdivide_depth = 10
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 5 )
+shader_param/radius = 1.0
+shader_param/angle = 0.5
 
 [node name="Cannon" type="Spatial"]
 script = ExtResource( 2 )
@@ -66,4 +77,18 @@ one_shot = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02187, -1.55921 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
+
+[node name="Arch" type="MeshInstance" parent="."]
+mesh = SubResource( 5 )
+material/0 = SubResource( 4 )
+
+[node name="Angle" type="Label" parent="Arch"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 6 )
+text = "0	"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
