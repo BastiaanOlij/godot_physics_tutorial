@@ -8,11 +8,24 @@ var mouse_is_down = false
 var down_position = Vector2(0.0, 0.0)
 var shoot_strength = 0.2
 
+func set_angle():
+	var angle = $CSGSphere.rotation.x
+	if $CSGSphere.rotation.y > 0.0:
+		angle = PI - angle
+	$Arch.get_surface_material(0).set_shader_param("angle", angle)
+	$Arch/Angle.text = "%.1f" % rad2deg(angle)
+	
+	# Position where our arch is
+	$Arch/Angle.rect_position = get_viewport().get_camera().unproject_position($Arch.global_transform.origin) + Vector2(60.0, -30.0)
+
 func rotate_cannon(mouse_position):
 	var mouse_delta = mouse_position - down_position
 	var direction = Vector3(0.0, mouse_delta.y, mouse_delta.x)
 	$CSGSphere.look_at($CSGSphere.global_transform.origin + direction, Vector3.UP)
 	$Aim.get_surface_material(0).set_shader_param("velocity", direction * shoot_strength)
+	
+	set_angle()
+
 
 # Handle our mouse event
 func _input(event):
@@ -54,6 +67,7 @@ func _input(event):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Aim.visible = false
+	set_angle()
 
 func _on_Cooldown_timeout():
 	can_shoot = true
