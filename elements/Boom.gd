@@ -1,7 +1,7 @@
 extends RigidBody
 
 var is_triggered = false
-var impulse_strength = 10.0
+var impulse_strength = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +19,7 @@ func _on_Trigger_body_entered(hit_body):
 				pass
 			elif body is RigidBody:
 				var delta = body.global_transform.origin - global_transform.origin
-				body.apply_impulse(body.global_transform.origin, delta.normalized() * impulse_strength)
+				body.apply_impulse(Vector3(0.0, 0.0, 0.0), delta.normalized() * impulse_strength)
 		
 		# Hide our object and start our particle system
 		$MeshInstance.visible = false
