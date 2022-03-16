@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/texturehaven.com/castle_wall_varriation/castle_wall_varriation.tres" type="Material" id=1]
 [ext_resource path="res://elements/Destructed.gd" type="Script" id=2]
 
-
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.5, 0.5, 0.4 )
 

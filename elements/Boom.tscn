@@ -16,7 +16,7 @@ extents = Vector3( 0.5, 0.5, 0.5 )
 extents = Vector3( 0.55, 0.5, 0.55 )
 
 [sub_resource type="SphereShape" id=5]
-radius = 1.5
+radius = 2.5
 
 [sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
@@ -94,5 +94,6 @@ draw_pass_1 = SubResource( 10 )
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
